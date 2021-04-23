@@ -1,0 +1,225 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Automatic Documentation API",
+    "description": "Automatic Documentation API with Swagger"
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "JWT token using Bearer Token",
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "description": "Route store user.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Parameters store user.",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "login": {
+                  "type": "string",
+                  "example": "E-mail"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password account"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "Route used to login.",
+        "parameters": [
+          {
+            "name": "auth",
+            "in": "body",
+            "description": "Parameters for logging in.",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "login": {
+                  "type": "string",
+                  "example": "E-mail"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password account"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "description": "Route get products.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "description": "Route used to login.",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Parameters for store product.",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Title product"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Descricption product"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "10.00"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "example": "UUID"
+        },
+        "login": {
+          "type": "string",
+          "example": "E-mail"
+        },
+        "password_hash": {
+          "type": "string",
+          "example": "Hash password"
+        },
+        "enable": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "example": "UUID"
+        },
+        "title": {
+          "type": "string",
+          "example": "Name product"
+        },
+        "description": {
+          "type": "string",
+          "example": "Description product"
+        },
+        "price": {
+          "type": "string",
+          "example": "0.00"
+        },
+        "enable": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  },
+  "defaultModelsExpandDepth": -1
+}
